@@ -1,4 +1,5 @@
-const db = require("../models/index");
+import db from "../models/index";
+import CRUDServices from "../services/CRUDservices";
 
 let getHomePage = async (req, res) => {
   try {
@@ -13,7 +14,17 @@ let getHomePage = async (req, res) => {
 };
 
 let getAboutPage = (req, res) => {
-  return res.render("test/about.js");
+  return res.render("test/about.ejs");
 };
 
-module.exports = { getHomePage, getAboutPage };
+let getCRUD = (req, res) => {
+  return res.render("test/crud.ejs");
+};
+
+let postCRUD = async (req, res) => {
+  let message = await CRUDServices.createNewUser(req.body);
+  console.log(message);
+  return res.send("post crud from server");
+};
+
+module.exports = { getHomePage, getAboutPage, getCRUD, postCRUD };
