@@ -14,8 +14,8 @@ let createNewUser = async (data) => {
         firstName: data.firstName,
         lastName: data.lastName,
         address: data.address,
-        gender: data.gender === "1" ? true : false,
         phonenumber: data.phonenumber,
+        gender: data.gender === "1" ? true : false,
         roleId: data.roleId,
       });
       resolve("Successfully created new user");
@@ -37,6 +37,19 @@ let hashUserPassword = (password) => {
   });
 };
 
+//Lấy tất cả dữ liệu User
+let getAllUser = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let users = db.User.findAll();
+      resolve(users);
+    } catch (error) {
+      reject(error);
+    }
+  });
+};
+
 module.exports = {
   createNewUser,
+  getAllUser,
 };

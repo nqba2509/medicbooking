@@ -1,3 +1,4 @@
+import { raw } from "body-parser";
 import db from "../models/index";
 import CRUDServices from "../services/CRUDservices";
 
@@ -18,7 +19,7 @@ let getAboutPage = (req, res) => {
 };
 
 let getCRUD = (req, res) => {
-  return res.render("test/crud.ejs");
+  return res.render("crud.ejs");
 };
 
 let postCRUD = async (req, res) => {
@@ -27,4 +28,18 @@ let postCRUD = async (req, res) => {
   return res.send("post crud from server");
 };
 
-module.exports = { getHomePage, getAboutPage, getCRUD, postCRUD };
+let displayGetCRUD = async (req, res) => {
+  let data = await CRUDServices.getAllUser({
+    raw: true,
+  });
+  console.log(data);
+  return res.render("displayCRUD.ejs", { dataTable: data });
+};
+
+module.exports = {
+  getHomePage,
+  getAboutPage,
+  getCRUD,
+  postCRUD,
+  displayGetCRUD,
+};

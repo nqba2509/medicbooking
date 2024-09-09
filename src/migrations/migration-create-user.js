@@ -23,16 +23,16 @@ module.exports = {
       address: {
         type: Sequelize.STRING,
       },
-      gender: {
-        type: Sequelize.BOOLEAN,
-      },
-      image: {
-        type: Sequelize.STRING,
-      },
       phonenumber: {
         type: Sequelize.STRING,
       },
+      gender: {
+        type: Sequelize.BOOLEAN,
+      },
       roleId: {
+        type: Sequelize.STRING,
+      },
+      image: {
         type: Sequelize.STRING,
       },
       positionId: {
